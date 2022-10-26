@@ -1,0 +1,331 @@
+// global styles for <a> and <p> tags
+$govuk-global-styles: true;
+$govuk-new-link-styles: true;
+
+// We can't mount GOV.UK Frontend's assets at root as it's done automatically by the extensions framework.
+$govuk-assets-path: '/govuk/assets/';
+
+// Import GOV.UK Frontend and any extension styles if extensions have been configured
+@import "lib/extensions/extensions";
+
+// Patterns that aren't in Frontend
+@import "patterns/step-by-step-header";
+@import "patterns/step-by-step-nav";
+@import "patterns/step-by-step-related";
+@import "patterns/task-list";
+@import "patterns/related-items";
+
+// Components that aren't in Frontend
+@import "components/cookie-banner";
+
+// Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+
+$navigation-height: 50px;
+
+.grey-background {
+  background-color: govuk-colour("light-grey");
+}
+
+.blue-background {
+  background-color: govuk-colour("dark-blue");
+}
+
+.light-blue-background {
+  background-color: govuk-colour("blue");
+}
+
+.white-text {
+  color: govuk-colour("white") !important;
+}
+
+.dark-grey-text {
+  color: govuk-colour("dark-grey") !important;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.border-dark-blue {
+    border: 5px solid govuk-colour("dark-blue");
+}
+
+.border-green {
+    border: 5px solid govuk-colour("green");
+}
+
+.results{
+  padding: 20px 0 20px 10px;
+}
+.highlight-content{
+  padding: 10px 10px 0 10px;
+}
+.answer-label {
+  margin-left: -5px;
+  margin-bottom: 5px;
+  font-size: medium;
+}
+
+.app-navigation {
+  @include govuk-font(19, $weight: bold);
+  box-sizing: border-box;
+  height: 50px;
+  background-color: govuk-colour("light-grey");
+
+  @include govuk-media-query($until: tablet) {
+    display: none;
+  }
+  z-index: 2;
+}
+
+.app-navigation__list {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.app-navigation__list-item {
+  box-sizing: border-box;
+  display: block;
+  position: relative;
+  height: $navigation-height;
+  padding: 0 govuk-spacing(3);
+  float: left;
+  line-height: $navigation-height;
+}
+
+.app-navigation__list-item--current {
+  border-bottom: 4px solid govuk-colour("blue");
+}
+
+.year-navigation {
+  @include govuk-font(19, $weight: bold);
+  box-sizing: border-box;
+  height: 50px;
+
+
+  @include govuk-media-query($until: tablet) {
+    display: none;
+  }
+  z-index: 2;
+}
+
+.year-navigation__list {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.year-navigation__list-item {
+  box-sizing: border-box;
+  display: block;
+  position: relative;
+  height: $navigation-height;
+  padding: 0 govuk-spacing(3);
+  float: left;
+  line-height: $navigation-height;
+}
+
+.year-navigation__list-item--current {
+  border-bottom: 4px solid govuk-colour("black");
+}
+
+.year-navigation__link {
+  @include govuk-typography-weight-bold;
+  text-decoration: none;
+}
+
+.app-navigation__link {
+  @include govuk-typography-weight-bold;
+  text-decoration: none;
+
+  &:not(:focus):visited {
+    color: $govuk-link-colour;
+  }
+
+  &:not(:focus):hover {
+    color: $govuk-link-colour;
+    text-decoration: underline;
+  }
+
+  // Extend the touch area of the link to the list
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+.app-navigation__list-item--current .app-navigation__link:hover,
+.year-navigation__list-item--current .app-navigation__link:hover {
+  text-decoration: none;
+}
+.year-navigation__list-item--current .app-navigation__link:hover {
+  color: govuk-colour("black");
+}
+
+.custom-wrapper {padding-top: 0 !important;}
+
+.gem-c-pagination {
+  display: block;
+  margin: govuk-spacing(8) 0;
+}
+
+.gem-c-pagination__list {
+  margin: 0;
+  padding: 0;
+}
+
+.gem-c-pagination__item {
+  @include govuk-font($size: 16, $line-height: (20 / 16));
+  list-style: none;
+
+  &:first-child {
+    margin-bottom: govuk-spacing(4);
+  }
+}
+
+.gem-c-pagination__link {
+  @extend %govuk-link;
+  display: block;
+  text-decoration: none;
+  padding-bottom: govuk-spacing(4);
+
+  &:hover,
+  &:active,
+  &:visited {
+    color: $govuk-link-colour;
+  }
+
+  &:hover,
+  &:active {
+    background-color: govuk-colour("light-grey", $legacy: "grey-4");
+  }
+
+  &:focus {
+    @include govuk-focused-text;
+
+    .gem-c-pagination__link-title {
+      border-top-color: transparent;
+    }
+
+    .gem-c-pagination__link-icon {
+      fill: $govuk-text-colour;
+    }
+  }
+}
+
+.gem-c-pagination__link-title {
+  display: block;
+  border-top: 1px solid $govuk-border-colour;
+  padding-top: govuk-spacing(3);
+}
+
+.gem-c-pagination__link-divider {
+  @include govuk-visually-hidden;
+}
+
+.gem-c-pagination__link-text {
+  @include govuk-font(19, $weight: bold);
+  margin-left: govuk-spacing(2);
+}
+
+.gem-c-pagination__link-icon {
+  @include govuk-font($size: 24, $line-height: (33.75 / 27));
+  display: inline-block;
+  margin-bottom: 1px;
+  height: .482em;
+  width: .63em;
+  fill: govuk-colour("dark-grey", $legacy: "grey-1");
+}
+
+.gem-c-pagination__link-label {
+  display: inline-block;
+  margin-top: .1em;
+  text-decoration: underline;
+  margin-left: govuk-spacing(5);
+
+  @include govuk-media-query($from: tablet) {
+    margin-left: govuk-spacing(6);
+  }
+}
+
+.flex-wrapper {
+  display: flex;
+  align-items: flex-end;
+}
+
+.govuk-button-group {
+  $horizontal-gap: govuk-spacing(3);
+  $vertical-gap: govuk-spacing(3);
+  // These need to be kept in sync with the button component's styles
+  $button-padding: govuk-spacing(2);
+  $button-shadow-size: $govuk-border-width-form-element;
+  $link-spacing: govuk-spacing(1);
+  @include govuk-responsive-margin(6, "bottom", $adjustment: $vertical-gap * -1);
+  // Flexbox is used to center-align links on mobile, align everything along
+  // the baseline on tablet and above, and to removes extra whitespace that
+  // we'd get between the buttons and links because they're inline-blocks.
+  //
+  // Ideally we'd use `gap` with flexbox rather than having to do it all with
+  // margins, but unfortunately the support isn't there (yet) and @supports
+  // doesn't play nicely with it
+  // (https://github.com/w3c/csswg-drafts/issues/3559)
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  // Give links within the button group the same font-size and line-height
+  // as buttons.
+  //
+  // Because we want the focus state to be tight around the link text, we use
+  // margins where the buttons would use padding.
+  .govuk-link {
+    @include govuk-font($size: 19, $line-height: 19px);
+    display: inline-block;
+    // Prevent links overflowing their container in IE10/11 because of bug
+    // with align-items: center
+    max-width: 100%;
+    margin-top: $link-spacing;
+    margin-bottom: $link-spacing + $vertical-gap;
+    text-align: center;
+  }
+  // Reduce the bottom margin to the size of the vertical gap (accommodating
+  // the button shadow) – the 'lost' margin is moved to the button-group.
+  .govuk-button {
+    margin-bottom: $vertical-gap + $button-shadow-size;
+  }
+  // On tablet and above, we also introduce a 'column gap' between the
+  // buttons and links in each row and left align links
+  @include govuk-media-query($from: tablet) {
+    // Cancel out the column gap for the last item in each row
+    margin-right: ($horizontal-gap * -1);
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-align: baseline;
+        -ms-flex-align: baseline;
+            align-items: baseline;
+    .govuk-button,
+    .govuk-link {
+      margin-right: $horizontal-gap;
+    }
+    .govuk-link {
+      text-align: left;
+    }
+  }
+}
